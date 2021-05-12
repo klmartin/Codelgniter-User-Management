@@ -35,7 +35,14 @@ $routes->setAutoRoute(true);
 // $routes->get('/', 'Home::index');
 $routes->get('/', 'Home::index');
 $routes->get('/dashboard', 'Dashboard::index',['filter' => 'auth']);
-
+$routes->get('/users', 'UsersController::index',['filter' => 'auth']);
+$routes->get('UsersController/edit(:num)', 'UsersController::edit/$1', ['filter' =>'auth']);
+$routes->put('UsersController/updateUser(:num)', 'UsersController::updateUser/$1', ['filter' =>'auth']);
+$routes->get('/manage-roles', 'RolesController::index', ['filter' => 'auth']);
+$routes->get('/create-roles', 'RolesController::createRole', ['filter' => 'auth']);
+$routes->post('submit-form', 'RolesController::saveRole', ['filter' => 'auth']);
+$routes->get('/assign-roles', 'RolesController::assignView', ['filter' => 'auth']);
+$routes->post('submit-role', 'RolesController::saveUserRole', ['filter' => 'auth']);
 /*
  * --------------------------------------------------------------------
  * Additional Routing

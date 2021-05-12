@@ -10,7 +10,9 @@ class Register extends Controller
         //include helper form
         helper(['form']);
         $data = [];
+        echo view('layouts/header');
         echo view('register', $data);
+        echo view('layouts/footer');
     }
   
     public function save()
@@ -33,10 +35,12 @@ class Register extends Controller
                 'user_password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT)
             ];
             $model->save($data);
-            return redirect()->to('/login');
+            return redirect()->to('/users');
         }else{
             $data['validation'] = $this->validator;
+            echo view('layouts/header');
             echo view('register', $data);
+            echo view('layouts/footer');
         }
           
     }
